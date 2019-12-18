@@ -21,7 +21,7 @@ import java.util.Set;
 public class Customer {
 
     @Id
-    @Column(name = "`customer_id`")
+    @Column(name = "customer_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer customerId;
 
@@ -33,16 +33,16 @@ public class Customer {
 
     private String phone;
 
-    @Column(name = "`date_create`")
+    @Column(name = "date_create")
     @CreatedDate
     private Date dateCreate;
 
-    @Column(name = "`date_update`")
+    @Column(name = "date_update")
     @LastModifiedDate
     private Date dateUpdate;
 
     private Date dateDelete;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "customer")
-    private Set<Order> orderSet;
+    private Set<Order> orders;
 }

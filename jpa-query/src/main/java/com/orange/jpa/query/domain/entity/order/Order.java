@@ -18,27 +18,24 @@ import java.util.Date;
 @Entity
 @Data
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "order")
+@Table(name = "customer_order")
 @EqualsAndHashCode(of = {"orderId"})
 public class Order {
 
     @Id
-    @Column(name = "`order_id`")
+    @Column(name = "order_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderId;
-
-    @Column(name = "customer_id")
-    private Integer customerId;
 
     private String orderDesc;
 
     private String orderContent;
 
-    @Column(name = "`date_create`")
+    @Column(name = "date_create")
     @CreatedDate
     private Date dateCreate;
 
-    @Column(name = "`date_update`")
+    @Column(name = "date_update")
     @LastModifiedDate
     private Date dateUpdate;
 

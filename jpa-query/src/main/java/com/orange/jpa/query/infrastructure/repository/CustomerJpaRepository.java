@@ -19,24 +19,24 @@ import java.util.List;
  * @Description:
  */
 @Repository
-public interface CustomerJPARepository extends JpaRepository<Customer,Long> {
+public interface CustomerJpaRepository extends JpaRepository<Customer,Long> {
 
     /**
-     *
+     * 需要加上@EntityGraph，否则存在n+1的问题
      * @param customerName
      * @return
      */
-    @EntityGraph(attributePaths = "orderSet")
+    @EntityGraph(attributePaths = "orders")
     List<CustomerView> findByCustomerName(String customerName);
 
     /**
      *
-     * @param CustomerId
+     * @param customerName
      * @param pageable
      * @return
      */
     @Query(nativeQuery = true,
             value = "select * from customer s " +
-                    "where (:CustomerId is null or s.customer_id=:CustomerId)")
-    Page<Customer> findSchool(@Param("CustomerId") Integer  CustomerId, Pageable pageable);
+                    "where (:customerName is null or s.customer_name=:customerName)")
+    Page<Customer> findCustomers(@Param("customerName") String  customerName, Pageable pageable);
 }

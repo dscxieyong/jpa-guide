@@ -1,7 +1,7 @@
 package com.orange.jpa.query.infrastructure.repository;
 
-import com.orange.jpa.query.base.BaseJpaRepository;
 import com.orange.jpa.query.domain.entity.customer.Customer;
+import com.orange.jpa.query.domain.entity.order.QOrder;
 import com.orange.jpa.query.domain.entity.order.customer.QCustomer;
 import com.orange.jpa.query.domain.query.QueryDTO;
 import com.querydsl.core.BooleanBuilder;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author xieyong
@@ -22,22 +21,22 @@ import java.util.Objects;
 public class CustomerQueryRepository extends BaseJpaRepository<Customer,Long> {
 
     private static final QCustomer qs = QCustomer.customer;
-
+    private static final QOrder qo = QOrder.order;
     CustomerQueryRepository(EntityManager em) {
         super(Customer.class, em);
     }
 
-    public List<Customer> getCustomerById(QueryDTO dto, Integer limit, Integer offset){
+    public List<Customer> getCustomer(QueryDTO dto, Integer limit, Integer offset){
         BooleanBuilder whereClause=new BooleanBuilder();
         //dynamic
-        if(Objects.nonNull(dto.getCustomerId())){
-            whereClause.and(qs.customerId.eq(dto.getCustomerId()));
+        if(StringUtils.isNotBlank(dto.getCustomerName())){
+            whereClause.and(qs.customerName.eq(dto.getCustomerName()));
         }
 
-        return jpaQueryFactory.select(Projections.constructor(Customer.class,qs.customerName,qs.customerId))
+        return jpaQueryFactory.selectFrom(qs)
                 .from(qs)
                 .where(whereClause)
-                .orderBy(qs.customerId.desc())
+                .orderBy(qs.dateCreate.desc())
                 .limit(limit)
                 .offset(offset)
                 .fetch();

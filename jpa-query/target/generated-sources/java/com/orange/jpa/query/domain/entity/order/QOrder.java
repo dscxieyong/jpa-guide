@@ -16,15 +16,13 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.EntitySerializer")
 public class QOrder extends EntityPathBase<Order> {
 
-    private static final long serialVersionUID = 1278754256L;
+    private static final long serialVersionUID = -301120639L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QOrder order = new QOrder("order1");
 
-    public final com.orange.jpa.query.domain.entity.order.customer.QCustomer customer;
-
-    public final NumberPath<Integer> customerId = createNumber("customerId", Integer.class);
+    public final com.orange.jpa.query.domain.entity.customer.QCustomer customer;
 
     public final DateTimePath<java.util.Date> dateCreate = createDateTime("dateCreate", java.util.Date.class);
 
@@ -56,7 +54,7 @@ public class QOrder extends EntityPathBase<Order> {
 
     public QOrder(Class<? extends Order> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.customer = inits.isInitialized("customer") ? new com.orange.jpa.query.domain.entity.order.customer.QCustomer(forProperty("customer")) : null;
+        this.customer = inits.isInitialized("customer") ? new com.orange.jpa.query.domain.entity.customer.QCustomer(forProperty("customer")) : null;
     }
 
 }

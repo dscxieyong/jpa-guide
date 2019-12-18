@@ -2,6 +2,7 @@ package com.orange.jpa.query.domain.entity.customer;
 
 import com.orange.jpa.query.domain.entity.order.Order;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,5 +16,5 @@ public interface CustomerView {
 
     String getCustomerName();
 
-    Set<Order> getOrderSet();
+    List<Order> getOrders();
 }
