@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost/jpa_onetoone_primarykey
+    url: jdbc:mysql://localhost/jpa_onetoone_primarykey?useUnicode=true&amp&characterEncoding=UTF-8
     username: root
-    password: admin
+    password: root
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     show-sql: true

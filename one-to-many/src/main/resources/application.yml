@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost/jpa_onetomany
+    url: jdbc:mysql://localhost/jpa_onetomany?useUnicode=true&amp&characterEncoding=UTF-8
     username: root
     password: admin
     driver-class-name: com.mysql.jdbc.Driver
